@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07594f"><meta name="description" content="محاسبه شفاف و پلکانی حق‌الزحمه کارشناسان رسمی دادگستری مطابق ماده ۱۱">
+  <link rel="manifest" href="/manifest.webmanifest"><title>محاسب تعرفه کارشناسی ۱۴۰۵</title>
+  <style>@import "tailwindcss";
+
+:root { --ink:#172b2a; --muted:#6d7b78; --cream:#f4f1e8; --paper:#fffdf8; --green:#087968; --green-dark:#07594f; --lime:#c9e36b; --line:#dce2dc; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; color:var(--ink); background:var(--cream); font-family: Tahoma, Arial, sans-serif; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+main { min-height:100vh; overflow:hidden; }
+.topbar { width:min(1120px,calc(100% - 40px)); margin:auto; height:86px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(23,43,42,.15); }
+.brand { display:flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none; font-weight:800; font-size:20px; }
+.brand-mark { display:grid; place-items:center; background:var(--green); color:white; width:42px; height:42px; border-radius:14px 4px 14px 4px; }
+.source-link { color:var(--green-dark); text-decoration:none; font-size:14px; border-bottom:1px solid var(--green); padding-bottom:4px; }
+.hero { width:min(1120px,calc(100% - 40px)); margin:68px auto 42px; position:relative; }
+.hero:after { content:"۱۱"; position:absolute; left:0; top:-65px; font-size:240px; line-height:1; font-weight:900; color:rgba(8,121,104,.055); direction:ltr; }
+.eyebrow { display:flex; align-items:center; gap:10px; color:var(--green); font-weight:700; font-size:14px; letter-spacing:.3px; }
+.eyebrow span { width:30px; height:3px; background:var(--lime); }
+.hero h1 { margin:14px 0 18px; max-width:700px; font-size:clamp(44px,7vw,78px); line-height:1.25; letter-spacing:-2px; }
+.hero h1 em { color:var(--green); font-style:normal; }
+.hero p { color:var(--muted); font-size:17px; line-height:2; max-width:660px; margin:0; }
+.calculator,.results,.notes { width:min(1120px,calc(100% - 40px)); margin:0 auto 28px; }
+.calculator { background:var(--paper); padding:42px; border-radius:8px 28px 8px 28px; box-shadow:0 14px 50px rgba(34,54,51,.08); border:1px solid rgba(23,43,42,.06); }
+.calc-head,.result-title,.calc-head>div:first-child,.result-title>div { display:flex; align-items:center; justify-content:space-between; }
+.calc-head>div:first-child,.result-title>div { justify-content:flex-start; gap:12px; }
+.calc-head h2,.result-title h2 { margin:0; font-size:22px; }
+.step-number { color:var(--green); font-size:13px; font-weight:bold; border-left:2px solid var(--lime); padding-left:10px; }
+.step-number.light { color:var(--lime); }
+.unit-switch { display:flex; background:#edf1ec; padding:4px; border-radius:12px; }
+.unit-switch button { border:0; background:transparent; color:var(--muted); padding:9px 20px; border-radius:9px; }
+.unit-switch button.active { background:var(--green); color:white; box-shadow:0 3px 8px rgba(8,121,104,.2); }
+.field-label { display:block; margin:36px 0 10px; font-weight:700; font-size:14px; }
+.amount-field { display:flex; align-items:center; border-bottom:2px solid var(--ink); padding:4px 0 12px; transition:.2s; }
+.amount-field:focus-within { border-color:var(--green); }
+.amount-field input { min-width:0; flex:1; border:0; outline:0; background:transparent; font-size:clamp(25px,4vw,42px); font-weight:700; color:var(--ink); direction:rtl; }
+.amount-field input::placeholder { color:#c2c8c4; font-size:clamp(19px,3vw,30px); }
+.amount-field>span { color:var(--green); font-weight:700; }
+.amount-help { margin-top:10px; color:var(--muted); font-size:12px; min-height:20px; }
+.expert-row { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:18px; }
+.expert-row label { display:block; font-weight:700; margin-bottom:7px; }
+.expert-row small { color:var(--muted); }
+.counter { display:flex; align-items:center; gap:15px; direction:ltr; }
+.counter button { width:38px; height:38px; border:1px solid var(--line); background:white; border-radius:50%; color:var(--green); font-size:22px; }
+.counter output { min-width:28px; text-align:center; font-weight:bold; font-size:20px; }
+.results { background:var(--green-dark); color:white; padding:42px; border-radius:28px 8px 28px 8px; min-height:310px; }
+.year-pill { color:#d5e7df; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14); padding:8px 13px; border-radius:20px; font-size:12px; }
+.empty-result { min-height:200px; display:grid; place-content:center; text-align:center; color:#bdd0ca; }
+.empty-result span { opacity:.22; font-size:56px; font-weight:900; direction:ltr; }
+.empty-result p { margin:5px 0; }
+.primary-result { padding:35px 0 28px; border-bottom:1px solid rgba(255,255,255,.15); }
+.primary-result>span { display:block; color:#cfdfda; font-size:14px; }
+.primary-result strong { display:inline-block; font-size:clamp(40px,7vw,68px); line-height:1.4; margin-left:10px; direction:ltr; }
+.primary-result small { color:var(--lime); font-weight:bold; }
+.result-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:25px 0; }
+.result-grid>div { padding:18px; background:rgba(255,255,255,.07); border-radius:12px; }
+.result-grid span,.result-grid small { display:block; color:#c6d8d2; font-size:12px; }
+.result-grid b { display:inline-block; font-size:21px; margin:12px 0 5px 8px; direction:ltr; }
+.steps-toggle { width:100%; display:flex; justify-content:space-between; padding:16px 2px; border:0; color:white; background:transparent; border-top:1px solid rgba(255,255,255,.15); }
+.steps-toggle b { color:var(--lime); font-size:20px; }
+.breakdown { background:rgba(0,0,0,.12); border-radius:12px; padding:6px 18px; }
+.breakdown>div { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.1); font-size:12px; }
+.breakdown>div:last-of-type { border:0; }
+.breakdown b { white-space:nowrap; color:var(--lime); }
+.breakdown p { color:var(--lime); font-size:12px; }
+.actions { display:flex; gap:12px; margin-top:25px; }
+.actions button { border-radius:10px; padding:13px 23px; font-weight:bold; }
+.primary-action { background:var(--lime); color:var(--ink); border:1px solid var(--lime); }
+.secondary-action { background:transparent; color:white; border:1px solid rgba(255,255,255,.35); }
+.notes { display:flex; gap:20px; padding:32px; border:1px solid #d8d9c8; background:#eeecdf; border-radius:8px 20px 8px 20px; }
+.note-icon { display:grid; place-items:center; flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--lime); font-weight:bold; }
+.notes h2 { margin:4px 0 10px; font-size:17px; }
+.notes p { margin:0 0 8px; line-height:1.9; color:#56635f; font-size:13px; }
+.notes .disclaimer { font-weight:bold; color:#3a4845; }
+footer { width:min(1120px,calc(100% - 40px)); margin:45px auto 0; padding:25px 0 35px; display:flex; justify-content:space-between; border-top:1px solid rgba(23,43,42,.15); color:var(--muted); font-size:12px; }
+@media(max-width:680px){
+  .topbar { height:72px; } .hero { margin-top:45px; } .hero:after { font-size:150px; top:-25px; }
+  .hero h1 { font-size:42px; letter-spacing:-1px; } .hero p { font-size:14px; }
+  .calculator,.results { padding:26px 20px; } .calc-head { align-items:flex-start; gap:18px; }
+  .unit-switch button { padding:8px 14px; } .expert-row { align-items:flex-end; } .expert-row small { display:none; }
+  .result-grid { grid-template-columns:1fr; } .primary-result strong { font-size:38px; }
+  .result-title { align-items:flex-start; } .breakdown>div { align-items:flex-start; flex-direction:column; gap:6px; }
+  .actions { display:grid; grid-template-columns:1fr 1fr; } .notes { padding:24px 20px; }
+}
+@media print {
+  body { background:white; } .topbar,.hero,.calculator,.notes,footer,.no-print { display:none!important; }
+  .results { margin:0; width:100%; color:#111; background:white; box-shadow:none; }
+  .result-grid>div,.breakdown { background:#f4f4f4; } .result-grid span,.result-grid small { color:#555; }
+  .year-pill,.primary-result small,.breakdown b { color:#333; } .steps-toggle { display:none; }
+}
+</style>
+</head>
+<body><main>
+  <header class="topbar"><a class="brand" href="#top"><span class="brand-mark">مـ</span><span>محاسب</span></a><a class="source-link" href="#source">مبنای محاسبه</a></header>
+  <section id="top" class="hero"><div class="eyebrow"><span></span> تعرفه سال ۱۴۰۵</div><h1>حق‌الزحمه کارشناسی،<br><em>شفاف و دقیق</em></h1><p>مبلغ ارزیابی را وارد کنید؛ حق‌الزحمه ماده ۱۱ به‌صورت پلکانی و همراه با ریز محاسبات نمایش داده می‌شود.</p></section>
+  <section class="calculator" aria-labelledby="calculator-title">
+    <div class="calc-head"><div><span class="step-number">۰۱</span><h2 id="calculator-title">اطلاعات ارزیابی</h2></div><div class="unit-switch" role="group" aria-label="واحد مبلغ"><button class="active" data-unit="rial">ریال</button><button data-unit="toman">تومان</button></div></div>
+    <label class="field-label" for="amount">مبلغ ارزیابی</label><div class="amount-field"><input id="amount" inputmode="numeric" autocomplete="off" placeholder="مثلاً ۵٬۰۰۰٬۰۰۰٬۰۰۰"><span id="unit-label">ریال</span></div><div id="amount-help" class="amount-help">عدد را بدون نگرانی از جداکننده وارد کنید</div>
+    <div class="expert-row"><div><label>تعداد اعضای هیئت</label><small>برای کارشناس منفرد، عدد ۱ را انتخاب کنید.</small></div><div class="counter"><button id="minus" aria-label="کاهش تعداد">−</button><output id="experts">۱</output><button id="plus" aria-label="افزایش تعداد">+</button></div></div>
+  </section>
+  <section class="results" aria-live="polite"><div class="result-title"><div><span class="step-number light">۰۲</span><h2>نتیجه محاسبه</h2></div><span class="year-pill">ماده ۱۱ · ۱۴۰۵</span></div><div id="result-content"><div class="empty-result"><span>۱۲۳</span><p>با وارد کردن مبلغ ارزیابی، نتیجه اینجا نمایش داده می‌شود.</p></div></div></section>
+  <section id="source" class="notes"><span class="note-icon">!</span><div><h2>درباره نتیجه</h2><p>محاسبه بر پایه جدول ماده ۱۱ تعرفه سال ۱۴۰۵ ارائه‌شده انجام می‌شود: مبلغ پایه ۲۰ میلیون ریال تا ارزش ۵۰۰ میلیون ریال، نرخ‌های پلکانی نسبت به مازاد و سقف ۱٫۳۵ میلیارد ریال.</p><p class="disclaimer">این ابزار برای محاسبه و کنترل اولیه است. مبلغ قطعی با توجه به موضوع، تعداد رشته‌ها، تبصره‌ها و نظر مرجع ارجاع‌کننده تعیین می‌شود.</p></div></section>
+  <footer><span>محاسب تعرفه کارشناسی</span><span>نسخه ۱۴۰۵</span></footer>
+</main><script>const brackets=[
+  {from:500000000,to:1000000000,rate:.0045},{from:1000000000,to:5000000000,rate:.003},{from:5000000000,to:30000000000,rate:.002},{from:30000000000,to:150000000000,rate:.0012},{from:150000000000,to:500000000000,rate:.0009},{from:500000000000,to:1000000000000,rate:.00031},{from:1000000000000,to:2000000000000,rate:.00023},{from:2000000000000,to:4000000000000,rate:.000185},{from:4000000000000,to:Infinity,rate:.00015}
+];
+const fmt=new Intl.NumberFormat("fa-IR",{maximumFractionDigits:0});
+const pct=new Intl.NumberFormat("fa-IR",{maximumFractionDigits:4});
+const normalize=s=>s.replace(/[۰-۹]/g,c=>String("۰۱۲۳۴۵۶۷۸۹".indexOf(c))).replace(/[٠-٩]/g,c=>String("٠١٢٣٤٥٦٧٨٩".indexOf(c))).replace(/[^0-9]/g,"");
+let unit="rial",experts=1,value=0,lastResult=null;
+function calculate(v){let fee=20000000,steps=[{label:"مبلغ مقطوع تا ۵۰۰ میلیون ریال",amount:20000000}];for(const b of brackets){if(v<=b.from)break;const taxable=Math.min(v,b.to)-b.from,amount=taxable*b.rate;fee+=amount;steps.push({label:`مازاد از ${fmt.format(b.from)} ریال${Number.isFinite(b.to)?` تا ${fmt.format(b.to)} ریال`:" به بالا"}`,amount,rate:b.rate*100});}return{fee:Math.min(Math.round(fee),1350000000),steps};}
+function render(){const root=document.querySelector("#result-content");if(!value){root.innerHTML='<div class="empty-result"><span>۱۲۳</span><p>با وارد کردن مبلغ ارزیابی، نتیجه اینجا نمایش داده می‌شود.</p></div>';return;}const r=calculate(value);lastResult=r;root.innerHTML=`<div class="primary-result"><span>حق‌الزحمه هر کارشناس</span><strong>${fmt.format(r.fee)}</strong><small>ریال</small></div><div class="result-grid"><div><span>مبلغ ارزیابی</span><b>${fmt.format(value)}</b><small>ریال</small></div><div><span>جمع حق‌الزحمه هیئت ${fmt.format(experts)} نفره</span><b>${fmt.format(r.fee*experts)}</b><small>ریال</small></div></div><button class="steps-toggle" id="steps-toggle" aria-expanded="false"><span>ریز محاسبات پلکانی</span><b>+</b></button><div id="breakdown"></div><div class="actions no-print"><button class="primary-action" id="print">چاپ نتیجه</button><button class="secondary-action" id="copy">کپی نتیجه</button></div>`;document.querySelector("#steps-toggle").onclick=toggleSteps;document.querySelector("#print").onclick=()=>window.print();document.querySelector("#copy").onclick=copyResult;}
+function toggleSteps(e){const open=e.currentTarget.getAttribute("aria-expanded")==="true";e.currentTarget.setAttribute("aria-expanded",String(!open));e.currentTarget.querySelector("b").textContent=open?"+":"−";document.querySelector("#breakdown").innerHTML=open?"":`<div class="breakdown">${lastResult.steps.map(s=>`<div><span>${s.label}${s.rate?` (${pct.format(s.rate)}٪)`:""}</span><b>${fmt.format(Math.round(s.amount))} ریال</b></div>`).join("")}${lastResult.fee===1350000000?"<p>سقف تعرفه ۱٬۳۵۰٬۰۰۰٬۰۰۰ ریال اعمال شده است.</p>":""}</div>`;}
+async function copyResult(e){const text=`محاسبه تعرفه کارشناسی ۱۴۰۵\nمبلغ ارزیابی: ${fmt.format(value)} ریال\nحق‌الزحمه هر کارشناس: ${fmt.format(lastResult.fee)} ریال\nتعداد کارشناسان: ${fmt.format(experts)} نفر\nجمع هیئت: ${fmt.format(lastResult.fee*experts)} ریال`;await navigator.clipboard.writeText(text);e.currentTarget.textContent="کپی شد ✓";setTimeout(()=>e.currentTarget.textContent="کپی نتیجه",1800);}
+document.querySelector("#amount").addEventListener("input",e=>{const n=normalize(e.target.value);e.target.value=n?fmt.format(Number(n)):"";const entered=Number(n)||0;value=unit==="toman"?entered*10:entered;document.querySelector("#amount-help").textContent=value?`معادل ${fmt.format(value)} ریال`:"عدد را بدون نگرانی از جداکننده وارد کنید";render();});
+document.querySelectorAll("[data-unit]").forEach(b=>b.onclick=()=>{unit=b.dataset.unit;document.querySelectorAll("[data-unit]").forEach(x=>x.classList.toggle("active",x===b));document.querySelector("#unit-label").textContent=unit==="rial"?"ریال":"تومان";document.querySelector("#amount").dispatchEvent(new Event("input"));});
+document.querySelector("#minus").onclick=()=>{experts=Math.max(1,experts-1);document.querySelector("#experts").textContent=fmt.format(experts);render();};document.querySelector("#plus").onclick=()=>{experts=Math.min(15,experts+1);document.querySelector("#experts").textContent=fmt.format(experts);render();};
+if("serviceWorker" in navigator)navigator.serviceWorker.register("/sw.js").catch(()=>{});
+</script></body></html>

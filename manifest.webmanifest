@@ -1,0 +1,12 @@
+{
+  "name": "محاسب تعرفه کارشناسی ۱۴۰۵",
+  "short_name": "محاسب تعرفه",
+  "description": "محاسبه پلکانی حق‌الزحمه کارشناسان رسمی دادگستری",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#07594f",
+  "icons": []
+}
