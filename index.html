@@ -48,7 +48,7 @@ main { min-height:100vh; overflow:hidden; }
 .counter button { width:38px; height:38px; border:1px solid var(--line); background:white; border-radius:50%; color:var(--green); font-size:22px; }
 .counter output { min-width:28px; text-align:center; font-weight:bold; font-size:20px; }
 .results { background:var(--green-dark); color:white; padding:42px; border-radius:28px 8px 28px 8px; min-height:310px; }
-.year-pill { color:#d5e7df; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14); padding:8px 13px; border-radius:20px; font-size:12px; }
+.year-pill { color:#d5e7df; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14); padding:8px 13px; border-radius:20px; font-size:12px; line-height:1.8; text-align:center; }
 .empty-result { min-height:200px; display:grid; place-content:center; text-align:center; color:#bdd0ca; }
 .empty-result span { opacity:.22; font-size:56px; font-weight:900; direction:ltr; }
 .empty-result p { margin:5px 0; }
@@ -102,7 +102,7 @@ footer { width:min(1120px,calc(100% - 40px)); margin:45px auto 0; padding:25px 0
     <label class="field-label" for="amount">مبلغ ارزیابی</label><div class="amount-field"><input id="amount" inputmode="numeric" autocomplete="off" placeholder="مثلاً ۵٬۰۰۰٬۰۰۰٬۰۰۰"><span id="unit-label">ریال</span></div><div id="amount-help" class="amount-help">عدد را بدون نگرانی از جداکننده وارد کنید</div>
     <div class="expert-row"><div><label>تعداد اعضای هیئت</label><small>برای کارشناس منفرد، عدد ۱ را انتخاب کنید.</small></div><div class="counter"><button id="minus" aria-label="کاهش تعداد">−</button><output id="experts">۱</output><button id="plus" aria-label="افزایش تعداد">+</button></div></div>
   </section>
-  <section class="results" aria-live="polite"><div class="result-title"><div><span class="step-number light">۰۲</span><h2>نتیجه محاسبه</h2></div><span class="year-pill">ماده ۱۱ · ۱۴۰۵</span></div><div id="result-content"><div class="empty-result"><span>۱۲۳</span><p>با وارد کردن مبلغ ارزیابی، نتیجه اینجا نمایش داده می‌شود.</p></div></div></section>
+  <section class="results" aria-live="polite"><div class="result-title"><div><span class="step-number light">۰۲</span><h2>نتیجه محاسبه</h2></div><span class="year-pill">محاسبه ماده 11 تعرفه کارشناسان رسمی دادگستری</span></div><div id="result-content"><div class="empty-result"><span>۱۲۳</span><p>با وارد کردن مبلغ ارزیابی، نتیجه اینجا نمایش داده می‌شود.</p></div></div></section>
   <section id="source" class="notes"><span class="note-icon">!</span><div><h2>درباره نتیجه</h2><p>محاسبه بر پایه جدول ماده ۱۱ تعرفه سال ۱۴۰۵ ارائه‌شده انجام می‌شود: مبلغ پایه ۲۰ میلیون ریال تا ارزش ۵۰۰ میلیون ریال، نرخ‌های پلکانی نسبت به مازاد و سقف ۱٫۳۵ میلیارد ریال.</p><p class="disclaimer">این ابزار برای محاسبه و کنترل اولیه است. مبلغ قطعی با توجه به موضوع، تعداد رشته‌ها، تبصره‌ها و نظر مرجع ارجاع‌کننده تعیین می‌شود.</p></div></section>
   <footer><span>محاسب تعرفه کارشناسی</span><span>نسخه ۱۴۰۵</span></footer>
 </main><script>const brackets=[
