@@ -75,7 +75,8 @@ main { min-height:100vh; overflow:hidden; }
 .note-icon { display:grid; place-items:center; flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--lime); font-weight:bold; }
 .notes h2 { margin:4px 0 10px; font-size:17px; }
 .notes p { margin:0 0 8px; line-height:1.9; color:#56635f; font-size:13px; }
-.notes .disclaimer { font-weight:bold; color:#3a4845; }
+.notes a { color:var(--green-dark); font-weight:bold; text-underline-offset:3px; }
+.notes .credit { margin-top:14px; font-weight:bold; color:#3a4845; }
 footer { width:min(1120px,calc(100% - 40px)); margin:45px auto 0; padding:25px 0 35px; display:flex; justify-content:space-between; border-top:1px solid rgba(23,43,42,.15); color:var(--muted); font-size:12px; }
 @media(max-width:680px){
   .topbar { height:72px; } .hero { margin-top:45px; } .hero:after { font-size:150px; top:-25px; }
@@ -103,7 +104,7 @@ footer { width:min(1120px,calc(100% - 40px)); margin:45px auto 0; padding:25px 0
     <div class="expert-row"><div><label>تعداد اعضای هیئت</label><small>برای کارشناس منفرد، عدد ۱ را انتخاب کنید.</small></div><div class="counter"><button id="minus" aria-label="کاهش تعداد">−</button><output id="experts">۱</output><button id="plus" aria-label="افزایش تعداد">+</button></div></div>
   </section>
   <section class="results" aria-live="polite"><div class="result-title"><div><span class="step-number light">۰۲</span><h2>نتیجه محاسبه</h2></div><span class="year-pill">محاسبه ماده 11 تعرفه کارشناسان رسمی دادگستری</span></div><div id="result-content"><div class="empty-result"><span>۱۲۳</span><p>با وارد کردن مبلغ ارزیابی، نتیجه اینجا نمایش داده می‌شود.</p></div></div></section>
-  <section id="source" class="notes"><span class="note-icon">!</span><div><h2>درباره نتیجه</h2><p>محاسبه بر پایه جدول ماده ۱۱ تعرفه سال ۱۴۰۵ ارائه‌شده انجام می‌شود: مبلغ پایه ۲۰ میلیون ریال تا ارزش ۵۰۰ میلیون ریال، نرخ‌های پلکانی نسبت به مازاد و سقف ۱٫۳۵ میلیارد ریال.</p><p class="disclaimer">این ابزار برای محاسبه و کنترل اولیه است. مبلغ قطعی با توجه به موضوع، تعداد رشته‌ها، تبصره‌ها و نظر مرجع ارجاع‌کننده تعیین می‌شود.</p></div></section>
+  <section id="source" class="notes"><span class="note-icon">!</span><div><h2>درباره نتیجه</h2><p>محاسبه بر پایه ماده ۱۱ تعرفه کارشناسان رسمی دادگستری <a href="https://share.google/Hzt8kbFDuJVhJYeSH" target="_blank" rel="noopener noreferrer">مصوب سال ۱۴۰۵</a> که به تأیید و تصویب ریاست محترم قوه قضائیه رسیده و بر اساس دستورالعمل شماره ۹۰۰۰/۴۷۰۰/۹۰۰ مورخ ۱۴۰۵/۰۵/۲۰ معاونت محترم راهبردی قوه قضائیه که طی نامه شماره ۳۶۸۳/ش/۰۵ مورخ ۱۴۰۵/۰۵/۲۰ دبیرخانه شورای عالی کارشناسان رسمی دادگستری ابلاغ شده و به سفارش کانون کارشناسان رسمی دادگستری استان یزد تهیه گردیده است.</p><p class="credit">دکتر بی‌بی زهرا مدرسی<br>دانش‌آموخته PHD در رشته بیوتکنولوژی کشاورزی</p></div></section>
   <footer><span>محاسب تعرفه کارشناسی</span><span>نسخه ۱۴۰۵</span></footer>
 </main><script>const brackets=[
   {from:500000000,to:1000000000,rate:.0045},{from:1000000000,to:5000000000,rate:.003},{from:5000000000,to:30000000000,rate:.002},{from:30000000000,to:150000000000,rate:.0012},{from:150000000000,to:500000000000,rate:.0009},{from:500000000000,to:1000000000000,rate:.00031},{from:1000000000000,to:2000000000000,rate:.00023},{from:2000000000000,to:4000000000000,rate:.000185},{from:4000000000000,to:Infinity,rate:.00015}
